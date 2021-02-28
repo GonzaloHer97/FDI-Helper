@@ -1,0 +1,28 @@
+image: node:latest
+
+services:
+  - mysql:latest
+
+variables:
+  MYSQL_DATABASE: fdihelper
+  MYSQL_ROOT_PASSWORD: "fdihelper"
+  MYSQL_USER: fdihelperuser
+  MYSQL_PASSWORD: "fdihelper"
+
+stages:
+  - build
+  - test
+  
+cache:
+  paths:
+    - node_modules/
+    
+build:
+  stage: build
+  script:
+    - npm install
+
+test:
+  stage: test
+  script:
+    - npm test
